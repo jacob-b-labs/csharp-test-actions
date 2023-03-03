@@ -6,6 +6,7 @@
   - returns a number if it is an only number
   - returns a sum of numbers if they are separated with a comma
   - ... or a newline
+  - ... or mixed
   - ignores numbers larger than 1000
   - throws ArgumentNullException if loaded number is negative
   - allows /X/ on the start, then X (char) can be a separator alongside comma and newline
@@ -21,6 +22,13 @@ public class MyClass
 
         if (int.TryParse(Input, out int result))
             return result;
+
+        var numbers = Input.Split(",");
+        result = 0;
+        foreach (var num in numbers)
+            if (int.TryParse(num, out int val))
+                result += val;
+        return result;
 
         throw new NotImplementedException();
     }

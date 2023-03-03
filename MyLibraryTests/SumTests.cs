@@ -20,4 +20,15 @@ public class UnitTest1
     {
         Assert.Equal(Expected, MyClass.Sum(Input));
     }
+
+    [Theory]
+    [InlineData("0,23", 23)]
+    [InlineData("14,3,,7", 24)]
+    [InlineData("366,23,1", 390)]
+    [InlineData("1000,23,1,10,100", 1134)]
+    [InlineData(",,,,,", 0)]
+    public void ReturnsSumOfNumbersSeparatedByComma(string Input, int Expected)
+    {
+        Assert.Equal(Expected, MyClass.Sum(Input));
+    }
 }
