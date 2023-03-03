@@ -31,4 +31,26 @@ public class UnitTest1
     {
         Assert.Equal(Expected, MyClass.Sum(Input));
     }
+
+    [Theory]
+    [InlineData("0\n23", 23)]
+    [InlineData("14\n3\n\n7", 24)]
+    [InlineData("366\n23\n1", 390)]
+    [InlineData("1000\n23\n1\n10\n100", 1134)]
+    [InlineData("\n\n\n\n\n", 0)]
+    public void ReturnsSumOfNumbersSeparatedByNewLine(string Input, int Expected)
+    {
+        Assert.Equal(Expected, MyClass.Sum(Input));
+    }
+
+    [Theory]
+    [InlineData("0\n23,14", 37)]
+    [InlineData("14\n3,\n7", 24)]
+    [InlineData("366,23\n1", 390)]
+    [InlineData("1000,23\n1,10\n100", 1134)]
+    [InlineData(",\n\n,,\n", 0)]
+    public void ReturnsSumOfNumbersSeparatedByCommaOrNewLine(string Input, int Expected)
+    {
+        Assert.Equal(Expected, MyClass.Sum(Input));
+    }
 }

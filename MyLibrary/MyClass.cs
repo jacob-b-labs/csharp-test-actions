@@ -23,7 +23,8 @@ public class MyClass
         if (int.TryParse(Input, out int result))
             return result;
 
-        var numbers = Input.Split(",");
+        var delimiters = new List<string>(new[] { ",", "\n" });
+        var numbers = Input.Split(delimiters.ToArray(), StringSplitOptions.None);
         result = 0;
         foreach (var num in numbers)
             if (int.TryParse(num, out int val))
