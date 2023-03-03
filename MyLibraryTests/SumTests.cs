@@ -53,4 +53,14 @@ public class UnitTest1
     {
         Assert.Equal(Expected, MyClass.Sum(Input));
     }
+
+    [Theory]
+    [InlineData("1000,999,1001", 1999)]
+    [InlineData("1000,1000", 2000)]
+    [InlineData("1000", 1000)]
+    [InlineData("1001", 0)]
+    public void IgnoresNumbersLargerThan1000(string Input, int Expected)
+    {
+        Assert.Equal(Expected, MyClass.Sum(Input));
+    }
 }

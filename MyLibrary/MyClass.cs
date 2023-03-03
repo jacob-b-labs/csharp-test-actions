@@ -21,14 +21,14 @@ public class MyClass
             return 0;
 
         if (int.TryParse(Input, out int result))
-            return result;
+            return (result <= 1000 ? result : 0);
 
         var delimiters = new List<string>(new[] { ",", "\n" });
         var numbers = Input.Split(delimiters.ToArray(), StringSplitOptions.None);
         result = 0;
         foreach (var num in numbers)
             if (int.TryParse(num, out int val))
-                result += val;
+                result += (val <= 1000 ? val : 0);
         return result;
 
         throw new NotImplementedException();
