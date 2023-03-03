@@ -21,15 +21,17 @@ public class MyClass
             return 0;
 
         var delimiters = new List<string>(new[] { ",", "\n" });
-        // if (Input.StartsWith("/["))
-        // {
-        //     var parsed = Input.Split(new[] { "/[", "]/" }, StringSplitOptions.None);
-        // } 
+        string[] numbers;
+        if (Input.StartsWith("/["))
+        {
+            var parsed = Input.Split(new[] { "/[", "]/" }, StringSplitOptions.RemoveEmptyEntries);
+            delimiters.Add(parsed[0]);
+        }
         if (Input.StartsWith("/"))
         {
             delimiters.Add(Input.Substring(1, 1));
         }
-        var numbers = Input.Replace("/", String.Empty).Split(delimiters.ToArray(), StringSplitOptions.None);
+        numbers = Input.Replace("/[", String.Empty).Replace("]/", String.Empty).Replace("/", String.Empty).Split(delimiters.ToArray(), StringSplitOptions.None);
         int result = 0;
         foreach (var num in numbers)
             if (int.TryParse(num, out int val))
@@ -39,7 +41,5 @@ public class MyClass
                 result += (val <= 1000 ? val : 0);
             }
         return result;
-
-        throw new NotImplementedException();
     }
 }

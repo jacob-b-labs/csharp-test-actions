@@ -81,4 +81,12 @@ public class UnitTest1
     {
         Assert.Equal(Expected, MyClass.Sum(Input));
     }
+
+    [Theory]
+    [InlineData("/[ABCD]/0\n23ABCD14", 37)]
+    [InlineData("/@@/,\n@@\n,@@,\n", 0)]
+    public void AcceptsCustomDelimiterString(string Input, int Expected)
+    {
+        Assert.Equal(Expected, MyClass.Sum(Input));
+    }
 }
