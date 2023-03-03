@@ -21,7 +21,15 @@ public class MyClass
             return 0;
 
         var delimiters = new List<string>(new[] { ",", "\n" });
-        var numbers = Input.Split(delimiters.ToArray(), StringSplitOptions.None);
+        // if (Input.StartsWith("/["))
+        // {
+        //     var parsed = Input.Split(new[] { "/[", "]/" }, StringSplitOptions.None);
+        // } 
+        if (Input.StartsWith("/"))
+        {
+            delimiters.Add(Input.Substring(1, 1));
+        }
+        var numbers = Input.Replace("/", String.Empty).Split(delimiters.ToArray(), StringSplitOptions.None);
         int result = 0;
         foreach (var num in numbers)
             if (int.TryParse(num, out int val))

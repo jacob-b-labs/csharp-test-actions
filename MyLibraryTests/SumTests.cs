@@ -71,4 +71,14 @@ public class UnitTest1
     {
         Assert.Throws<ArgumentException>(() => MyClass.Sum(Input));
     }
+
+    [Theory]
+    [InlineData("/$/0\n23$14", 37)]
+    [InlineData("/%/14\n3,%7", 24)]
+    [InlineData("/*/1000,23*1*10\n100", 1134)]
+    [InlineData("/@/,\n@@\n,@,\n", 0)]
+    public void AcceptsCustomDelimiterChar(string Input, int Expected)
+    {
+        Assert.Equal(Expected, MyClass.Sum(Input));
+    }
 }
