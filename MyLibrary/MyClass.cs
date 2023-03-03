@@ -19,6 +19,9 @@ public class MyClass
         if (Input == string.Empty)
             return 0;
 
+        if (int.TryParse(Input, out int result))
+            return result;
+
         throw new NotImplementedException();
     }
 }
