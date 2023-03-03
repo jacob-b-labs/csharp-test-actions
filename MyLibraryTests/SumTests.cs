@@ -63,4 +63,12 @@ public class UnitTest1
     {
         Assert.Equal(Expected, MyClass.Sum(Input));
     }
+
+    [Theory]
+    [InlineData("1000,-5,235235")]
+    [InlineData("-3")]
+    public void ThrowsOnNegativeNumber(string Input)
+    {
+        Assert.Throws<ArgumentException>(() => MyClass.Sum(Input));
+    }
 }
